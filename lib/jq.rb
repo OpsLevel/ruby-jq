@@ -4,7 +4,14 @@ require 'multi_json'
 require 'tempfile'
 require 'stringio'
 
-require 'jq_core'
+begin
+  # Load the precompiled binary matching the current Ruby, if this is a
+  # platform-specific gem packaged by cibuildgem.
+  require "jq/#{RUBY_VERSION[/\d+\.\d+/]}/jq_core"
+rescue LoadError
+  # Fall back to the extension compiled from source at install time.
+  require 'jq/jq_core'
+end
 require 'jq/version'
 require 'jq/parser'
 
