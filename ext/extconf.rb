@@ -30,7 +30,10 @@ unless using_system_libraries?
     '--disable-shared',
     '--enable-static',
     '--with-pic',
-    "--with-oniguruma=#{onigmo.path}"
+    "--with-oniguruma=#{onigmo.path}",
+    # macOS declares lgamma_r only under _REENTRANT; jq's configure detects
+    # the symbol via a link check, so compilation fails without this.
+    'CPPFLAGS=-D_REENTRANT'
   ]
   class << recipe
     def configure
