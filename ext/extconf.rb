@@ -51,4 +51,10 @@ end
 
 abort 'libjq not found' unless have_library('jq')
 
+# On ELF platforms, keep the statically linked jq/Onigmo symbols out of the
+# extension's dynamic symbol table: libruby exports its own onig_* functions,
+# and the flat ELF namespace would let calls bind across copies. (Mach-O uses
+# two-level namespaces, and its linker lacks this flag.)
+$LDFLAGS << ' -Wl,--exclude-libs,ALL' unless RUBY_PLATFORM.include?('darwin') # rubocop:disable Style/GlobalVars
+
 create_makefile('jq/jq_core')
