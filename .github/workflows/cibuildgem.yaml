@@ -1,5 +1,11 @@
 name: "Package and release gems with precompiled binaries"
 on:
+  # TODO: remove this temporary trigger before merging; it exists only to
+  # test the workflow pre-merge (workflow_dispatch requires the file to be
+  # on the default branch).
+  push:
+    branches:
+      - claude/precompile-jq-gem-0g9x67
   workflow_dispatch:
     inputs:
       release:
