@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 3.3'
 
   spec.add_dependency 'multi_json'
-  spec.add_runtime_dependency 'mini_portile2', '>= 2.2.0'
+  spec.add_runtime_dependency 'mini_portile2', '~> 2.2'
 
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rake-compiler'

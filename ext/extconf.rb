@@ -10,6 +10,7 @@ unless using_system_libraries?
   message "Building jq using packaged libraries.\n"
 
   require 'rubygems'
+  gem 'mini_portile2', '~> 2.2'
   require 'mini_portile2'
 
   onigmo = MiniPortile.new('onigmo', '6.2.0')
