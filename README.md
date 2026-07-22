@@ -5,12 +5,21 @@ Ruby bindings for jq.
 see [http://stedolan.github.io/jq/](http://stedolan.github.io/jq/).
 
 [![Gem Version](https://badge.fury.io/rb/ruby-jq.svg)](http://badge.fury.io/rb/ruby-jq)
-[![Build Status](https://travis-ci.org/winebarrel/ruby-jq.svg?branch=master)](https://travis-ci.org/winebarrel/ruby-jq)
 
-## Prerequisites
+## Precompiled binaries
 
-jq requires the Oniguruma library to provide regex support. To install Oniguruma
-for your system, please follow the instructions in the [jq FAQ](https://github.com/stedolan/jq/wiki/FAQ#installation).
+Precompiled platform gems are published for `x86_64-linux` and `arm64-darwin`
+(one binary per supported minor Ruby version), so installing on those platforms
+requires no compiler or build tools. They are built and released with
+[cibuildgem](https://github.com/Shopify/cibuildgem) via the
+`.github/workflows/cibuildgem.yaml` workflow.
+
+On other platforms the source gem is installed instead: it downloads and
+statically compiles [OpsLevel's fork of jq](https://github.com/OpsLevel/jq)
+(jq 1.6 lineage where `env`/`$ENV` always return an empty object) along with
+[Onigmo](https://github.com/k-takata/Onigmo) for regex support, so the built
+extension is self-contained. Building from source requires autoconf, automake,
+and libtool.
 
 ## Installation
 

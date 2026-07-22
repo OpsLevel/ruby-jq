@@ -149,7 +149,7 @@ describe JQ do
 
   specify 'read from file (> 4096)' do
     Tempfile.open("ruby-jq.spec.#{$PROCESS_ID}") do |src|
-      src.puts('[' + (1..10).map { <<~JSON }.join(',') + ']')
+      src.puts("[#{(1..10).map { <<~JSON }.join(',')}]")
         {
             "glossary": {
                 "title": "example glossary",
@@ -258,6 +258,16 @@ describe JQ do
     JSON
 
     expect(JQ(src).search('.menu.popup.menuitem[].value')).to eq(%w[New Open Close])
+  end
+
+  specify 'regex support (requires onigmo)' do
+    expect(JQ('["foo", "bar", "baz"]').search('.[] | select(test("^ba"))')).to eq(%w[bar baz])
+    expect(JQ('"foo123bar"').search('capture("(?<digits>[0-9]+)")')).to eq([{ 'digits' => '123' }])
+  end
+
+  specify 'env is always empty (OpsLevel jq fork)' do
+    expect(JQ('null').search('env')).to eq([{}])
+    expect(JQ('null').search('$ENV')).to eq([{}])
   end
 
   specify 'compile error' do
