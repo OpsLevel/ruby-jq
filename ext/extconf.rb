@@ -14,7 +14,10 @@ unless using_system_libraries?
   require 'mini_portile2'
 
   onigmo = MiniPortile.new('onigmo', '6.2.0')
-  onigmo.files = ['https://github.com/k-takata/Onigmo/releases/download/Onigmo-6.2.0/onigmo-6.2.0.tar.gz']
+  onigmo.files = [{
+    url: 'https://github.com/k-takata/Onigmo/releases/download/Onigmo-6.2.0/onigmo-6.2.0.tar.gz',
+    sha256: 'c648496b5339953b925ebf44b8de356feda8d3428fa07dc1db95bfe2570feb76'
+  }]
   onigmo.configure_options = [
     '--disable-shared',
     '--enable-static',
@@ -24,7 +27,10 @@ unless using_system_libraries?
 
   # OpsLevel fork of jq: `env`/`$ENV` always return an empty object.
   recipe = MiniPortile.new('jq', '1.6.opslevel')
-  recipe.files = ['https://github.com/OpsLevel/jq/archive/845f4206dd8a82355325bafffbb54a5155cf67ec.tar.gz']
+  recipe.files = [{
+    url: 'https://github.com/OpsLevel/jq/archive/845f4206dd8a82355325bafffbb54a5155cf67ec.tar.gz',
+    sha256: '6e7683e74d7eef8ac0f81d5bafdccff0c38f5882923feebc0aa6d3b18abf8f9d'
+  }]
   recipe.configure_options = [
     '--disable-maintainer-mode',
     '--disable-docs',
