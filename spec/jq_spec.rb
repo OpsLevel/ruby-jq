@@ -234,11 +234,11 @@ describe JQ do
 
     expect(searched.length).to eq(1)
     expect(searched[0]).to be_kind_of(String)
-    expect(MultiJson.load(searched[0])).to eq(MultiJson.load(expected))
+    expect(MultiJSON.parse(searched[0])).to eq(MultiJSON.parse(expected))
 
     JQ(src, parse_json: false).search('.') do |value|
       expect(value).to be_kind_of(String)
-      expect(MultiJson.load(value)).to eq(MultiJson.load(expected))
+      expect(MultiJSON.parse(value)).to eq(MultiJSON.parse(expected))
     end
   end
 

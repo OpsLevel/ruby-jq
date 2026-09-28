@@ -58,7 +58,7 @@ module JQ
 
     def parse_json(str)
       if @options[:parse_json]
-        MultiJson.load("[#{str}]").first
+        MultiJSON.parse("[#{str}]").first
       else
         str
       end

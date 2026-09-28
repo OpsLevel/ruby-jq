@@ -5,7 +5,7 @@ require 'jq'
 module JQ
   module Extend
     def jq(program, &block)
-      src = MultiJson.dump(self)
+      src = MultiJSON.generate(self)
       JQ(src).search(program, &block)
     end
   end

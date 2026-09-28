@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   # spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'multi_json'
+  spec.add_dependency 'multi_json', '>= 1.21'
   spec.add_runtime_dependency 'mini_portile2', '>= 2.2.0'
 
   spec.add_development_dependency 'rake'
